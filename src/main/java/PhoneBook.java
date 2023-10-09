@@ -3,7 +3,7 @@ import java.util.*;
 public class PhoneBook {
 
     // Создаем HashMap, где ключ - это имя человека, а значение - это HashSet из номеров телефонов
-    private HashMap<String, HashSet<String>> phoneBook;
+    private final HashMap<String, HashSet<String>> phoneBook;
 
     // Конструктор класса PhoneBook
     public PhoneBook() {
@@ -45,13 +45,10 @@ public class PhoneBook {
             result.add(sb.toString());
         }
         // Сортируем список по убыванию числа телефонов для каждого имени
-        result.sort(new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                int count1 = s1.split(",").length;
-                int count2 = s2.split(",").length;
-                return Integer.compare(count2, count1);
-            }
+        result.sort((s1, s2) -> {
+            int count1 = s1.split(",").length;
+            int count2 = s2.split(",").length;
+            return Integer.compare(count2, count1);
         });
        return result;
     }
